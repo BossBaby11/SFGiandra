@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Define clip path to ensure nothing bleeds outside the circle -->
+  <defs>
+    <clipPath id="circleClip">
+      <circle cx="100" cy="100" r="96"/>
+    </clipPath>
+  </defs>
+
+  <!-- Cream background circle -->
+  <circle cx="100" cy="100" r="96" fill="#F8F6E7" stroke="#ddd8c0" stroke-width="0.7"/>
+
+  <!-- All content clipped to circle -->
+  <g clip-path="url(#circleClip)">
+    <!-- Brand name text -->
+    <text
+      x="100"
+      y="106"
+      font-family="'Poppins', 'Georgia', serif"
+      font-size="21"
+      font-weight="300"
+      letter-spacing="3.5"
+      fill="#E8A8AA"
+      text-anchor="middle"
+      dominant-baseline="middle"
+    >sfgiandra</text>
+
+    <!-- Underline below text -->
+    <line x1="41" y1="116" x2="159" y2="116" stroke="#E8A8AA" stroke-width="0.75" stroke-linecap="round"/>
+
+    <!-- Heart ornament above the dot of "i"
+         "i" sits at roughly x=87 based on character spacing from center with letter-spacing 3.5 -->
+    <g transform="translate(86.5, 92)">
+      <path
+        d="M0,-3.5 C1.5,-6 5,-5.5 5,-3 C5,-1 3,1 0,3.5 C-3,1 -5,-1 -5,-3 C-5,-5.5 -1.5,-6 0,-3.5 Z"
+        fill="none"
+        stroke="#E8A8AA"
+        stroke-width="1.1"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </g>
+  </g>
+</svg>
