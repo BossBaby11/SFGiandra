@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import Sidebar from './Sidebar';
@@ -8,7 +8,16 @@ export default function Navbar({ title, showBack, showIcons = true }) {
   const location = useLocation();
   const { totalItems } = useCart();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const isCheckout = showBack;
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const searchPlaceholder = windowWidth <= 360 ? 'Cari...' : windowWidth <= 400 ? 'Cari produk...' : 'Cari produk...';
 
   if (isCheckout) {
     return (
@@ -71,7 +80,7 @@ export default function Navbar({ title, showBack, showIcons = true }) {
           <input
             type="text"
             name="search"
-            placeholder="Search..."
+            placeholder={searchPlaceholder}
             className="navbar-search-input"
             autoComplete="off"
           />

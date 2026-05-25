@@ -153,9 +153,18 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 12px;
   z-index: 100;
   box-shadow: 0 2px 12px rgba(255,190,192,0.3);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 .navbar-logo-btn {
@@ -175,8 +184,8 @@ a {
 }
 
 .navbar-logo-img {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   /* clip out the white surrounding area - mix-blend keeps transparency look */
@@ -186,7 +195,8 @@ a {
 .navbar-icons {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
+  flex-shrink: 0;
 }
 
 .navbar-icon-btn {
@@ -231,10 +241,12 @@ a {
   align-items: center;
   background: var(--white);
   border-radius: var(--radius-full);
-  padding: 4px 10px;
+  padding: 4px 8px;
   flex: 1;
-  margin: 0 10px;
+  min-width: 0;
+  margin: 0 8px;
   max-width: 260px;
+  overflow: hidden;
 }
 
 .navbar-search-input {
@@ -266,6 +278,67 @@ a {
 
 .navbar-search-btn:active {
   transform: scale(0.9);
+}
+
+/* ============================================
+   NAVBAR RESPONSIVE (≤400px)
+   ============================================ */
+@media (max-width: 400px) {
+  .navbar {
+    padding: 0 8px;
+  }
+
+  .navbar-search {
+    margin: 0 6px;
+    padding: 4px 6px;
+  }
+
+  .navbar-hamburger,
+  .navbar-icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .navbar-hamburger svg,
+  .navbar-icon-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .navbar-logo-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar-search-input {
+    font-size: 12px;
+  }
+
+  .navbar-icons {
+    gap: 0;
+  }
+}
+
+@media (max-width: 340px) {
+  .navbar {
+    padding: 0 6px;
+  }
+
+  .navbar-search {
+    margin: 0 4px;
+    padding: 3px 5px;
+  }
+
+  .navbar-hamburger,
+  .navbar-icon-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .navbar-logo-img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .cart-badge {
