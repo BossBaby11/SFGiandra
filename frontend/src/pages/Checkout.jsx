@@ -79,6 +79,8 @@ export default function Checkout() {
     <div className="checkout-page page-enter">
       <Navbar showBack title="Checkout" showIcons={false} />
 
+      <div className="checkout-desktop-layout">
+        <div className="checkout-left-col">
       {/* Alamat Pengiriman */}
       <section className="checkout-section" style={{ marginTop: '0' }}>
         <div className="checkout-section-title">
@@ -212,7 +214,9 @@ export default function Checkout() {
           </svg>
         </button>
       </section>
+      </div> {/* End left col */}
 
+      <div className="checkout-right-col">
       {/* Metode Pembayaran */}
       <section className="checkout-section">
         <div className="checkout-section-title">
@@ -283,6 +287,8 @@ export default function Checkout() {
           Buat Pesanan
         </button>
       </div>
+      </div> {/* End right col */}
+      </div> {/* End desktop layout */}
 
       {/* Bottom Sheet: Pilih Pengiriman */}
       <BottomSheet
