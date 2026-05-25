@@ -163,6 +163,8 @@ a {
   border: none;
   padding: 0;
   cursor: pointer;
+  width: 44px; /* Test */
+  height: 44px; /* Test */
   display: flex;
   align-items: center;
   justify-content: center;
