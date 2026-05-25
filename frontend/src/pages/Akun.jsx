@@ -39,6 +39,7 @@ export default function Akun() {
   return (
     <div className="page page-enter" style={{ paddingBottom: '90px' }}>
       <Navbar />
+      <div className="akun-desktop-layout">
 
       {/* Profile Header */}
       <div className="akun-header">
@@ -119,6 +120,7 @@ export default function Akun() {
         </svg>
         Keluar dari Akun
       </button>
+      </div> {/* akun-desktop-layout */}
     </div>
   );
 }

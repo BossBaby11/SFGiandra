@@ -59,10 +59,10 @@ export default function Kategori() {
   }, [activeCategory, activeSort]);
 
   return (
-    <div style={{ background: '#F7F7F7', minHeight: '100vh', paddingTop: '60px', paddingBottom: '80px' }}>
+    <div className="kategori-page" style={{ background: '#F7F7F7', minHeight: '100vh', paddingTop: '60px', paddingBottom: '80px' }}>
       <Navbar />
 
-      <div style={{ position: 'sticky', top: '60px', zIndex: 50, background: '#fff' }}>
+      <div className="filter-bar-sticky" style={{ position: 'sticky', top: '60px', zIndex: 50, background: '#fff' }}>
         {/* Search breadcrumb */}
         {searchQuery && (
           <div style={{

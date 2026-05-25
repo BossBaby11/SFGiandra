@@ -193,7 +193,7 @@ export default function Home() {
 
       {/* ── TRUST BADGES ── */}
       <section style={{ background: '#fff', padding: '16px', marginBottom: '0' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+        <div className="trust-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
           {[
             { icon: '🚚', title: 'Pengiriman Cepat', desc: 'Estimasi 1-5 hari' },
             { icon: '✅', title: 'Produk Original', desc: '100% terjamin' },

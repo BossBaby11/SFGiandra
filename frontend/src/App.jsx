@@ -3,6 +3,7 @@ import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import { ToastProvider } from './context/ToastContext';
 import BottomNav from './components/BottomNav';
+import PageLayout from './components/PageLayout';
 import Home from './pages/Home';
 import Kategori from './pages/Kategori';
 import Wishlist from './pages/Wishlist';
@@ -18,10 +19,26 @@ export default function App() {
         <WishlistProvider>
           <ToastProvider>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/kategori" element={<Kategori />} />
-              <Route path="/wishlist" element={<Wishlist />} />
-              <Route path="/akun" element={<Akun />} />
+              <Route path="/" element={
+                <PageLayout>
+                  <Home />
+                </PageLayout>
+              } />
+              <Route path="/kategori" element={
+                <PageLayout>
+                  <Kategori />
+                </PageLayout>
+              } />
+              <Route path="/wishlist" element={
+                <PageLayout>
+                  <Wishlist />
+                </PageLayout>
+              } />
+              <Route path="/akun" element={
+                <PageLayout>
+                  <Akun />
+                </PageLayout>
+              } />
               <Route path="/keranjang" element={<Keranjang />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/product/:id" element={<ProductDetail />} />

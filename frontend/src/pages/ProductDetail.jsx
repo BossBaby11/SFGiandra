@@ -40,6 +40,7 @@ export default function ProductDetail() {
     <div className="product-detail-page page-enter">
       {/* Product Navbar */}
       <nav className="product-detail-navbar">
+        <div className="navbar-inner">
         <button
           onClick={() => navigate(-1)}
           style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', cursor: 'pointer' }}
@@ -75,17 +76,25 @@ export default function ProductDetail() {
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
         </button>
+        </div>
       </nav>
 
+      <div className="product-detail-desktop">
       {/* Product Image */}
-      <img
-        src={product.image}
-        alt={product.name}
-        className="product-detail-image"
-        onError={e => { e.target.src = '/img/pashmina1.png'; }}
-      />
+      <div className="product-detail-image-col">
+        <div className="product-detail-image-wrapper" style={{ padding: '16px', paddingBottom: 0 }}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="product-detail-image"
+            style={{ borderRadius: '16px' }}
+            onError={e => { e.target.src = '/img/pashmina1.png'; }}
+          />
+        </div>
+      </div>
 
       {/* Product Body */}
+      <div>
       <div className="product-detail-body">
         {product.badge && (
           <span style={{
@@ -162,6 +171,9 @@ export default function ProductDetail() {
           Beli Sekarang
         </button>
       </div>
+
+      </div> {/* End unnamed right column wrapper */}
+      </div> {/* End product-detail-desktop */}
     </div>
   );
 }

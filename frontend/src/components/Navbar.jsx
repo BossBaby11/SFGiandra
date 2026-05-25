@@ -3,6 +3,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import Sidebar from './Sidebar';
 
+const desktopNavLinks = [
+  { label: 'Home', path: '/' },
+  { label: 'Kategori', path: '/kategori' },
+  { label: 'Wishlist', path: '/wishlist' },
+  { label: 'Akun', path: '/akun' },
+];
+
 export default function Navbar({ title, showBack, showIcons = true }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,11 +24,17 @@ export default function Navbar({ title, showBack, showIcons = true }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const searchPlaceholder = windowWidth <= 360 ? 'Cari...' : windowWidth <= 400 ? 'Cari produk...' : 'Cari produk...';
+  const searchPlaceholder = windowWidth <= 360 ? 'Cari...' : 'Cari produk...';
+
+  const isActive = (path) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
 
   if (isCheckout) {
     return (
       <nav className="checkout-navbar">
+        <div className="navbar-inner">
         <button className="back-btn" onClick={() => navigate(-1)} aria-label="Kembali">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <polyline points="15 18 9 12 15 6"/>
@@ -36,6 +49,7 @@ export default function Navbar({ title, showBack, showIcons = true }) {
             </svg>
           </button>
         )}
+        </div>
       </nav>
     );
   }
@@ -43,8 +57,10 @@ export default function Navbar({ title, showBack, showIcons = true }) {
   return (
     <>
       <nav className="navbar">
-        {/* Left: Hamburger + Logo side by side */}
+        <div className="navbar-inner">
+        {/* Left: Hamburger + Logo */}
         <div className="navbar-left">
+          {/* Hamburger — hidden on desktop via CSS */}
           <button
             className="navbar-hamburger"
             onClick={() => setSidebarOpen(true)}
@@ -69,6 +85,21 @@ export default function Navbar({ title, showBack, showIcons = true }) {
               className="navbar-logo-img"
             />
           </button>
+
+          {/* Desktop Nav Links — shown only on desktop via CSS */}
+          <nav className="navbar-desktop-links" aria-label="Navigasi desktop">
+            {desktopNavLinks.map((link) => (
+              <button
+                key={link.path}
+                className={`navbar-desktop-link${isActive(link.path) ? ' active' : ''}`}
+                onClick={() => navigate(link.path)}
+                aria-current={isActive(link.path) ? 'page' : undefined}
+                id={`desktop-nav-${link.label.toLowerCase()}`}
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
         </div>
 
         {/* Center: Search Bar */}
@@ -92,7 +123,7 @@ export default function Navbar({ title, showBack, showIcons = true }) {
           </button>
         </form>
 
-        {/* Right: Action icons (Cart, Account) */}
+        {/* Right: Cart + Account */}
         <div className="navbar-icons">
           <button
             className="navbar-icon-btn"
@@ -116,9 +147,10 @@ export default function Navbar({ title, showBack, showIcons = true }) {
             </svg>
           </button>
         </div>
+        </div> {/* navbar-inner */}
       </nav>
 
-      {/* Sidebar */}
+      {/* Mobile Sidebar overlay */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
     </>
   );

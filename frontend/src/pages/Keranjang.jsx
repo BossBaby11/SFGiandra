@@ -34,8 +34,10 @@ export default function Keranjang() {
     showToast('Produk dihapus dari keranjang', 'info');
   };
 
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768;
+
   return (
-    <div style={{ background: '#F7F7F7', minHeight: '100vh', paddingTop: '60px', paddingBottom: '140px' }}>
+    <div style={{ background: '#F7F7F7', minHeight: '100vh', paddingTop: '60px', paddingBottom: isDesktop ? '24px' : '140px' }} className="cart-page">
       <Navbar showBack title="Keranjang" showIcons={false} />
 
       {cartItems.length === 0 ? (
@@ -50,7 +52,8 @@ export default function Keranjang() {
           </div>
         </div>
       ) : (
-        <>
+        <div className="cart-desktop-layout">
+          <div>
           {/* Select All */}
           <div style={{
             background: '#fff', padding: '12px 16px', marginBottom: '8px',
@@ -132,24 +135,34 @@ export default function Keranjang() {
               </div>
             ))}
           </div>
-        </>
-      )}
-
-      {/* Bottom Bar */}
-      {cartItems.length > 0 && (
-        <div className="cart-bottom">
-          <div>
-            <p className="cart-total-text">Total ({selected.size} item)</p>
-            <p className="cart-total-amount">{formatPrice(selectedTotal)}</p>
           </div>
-          <button
-            className="checkout-btn"
-            disabled={selected.size === 0}
-            onClick={() => navigate('/checkout')}
-            id="checkout-btn"
-          >
-            Beli ({selected.size})
-          </button>
+
+          {/* Right panel: Summary + Checkout (desktop) / Bottom bar (mobile) */}
+          {cartItems.length > 0 && (
+            <div className="cart-bottom" style={{ padding: '16px' }}>
+              <div style={{ marginBottom: '12px' }}>
+                <p style={{ fontSize: '14px', fontWeight: 700, color: 'var(--dark)', marginBottom: '8px' }}>Ringkasan Belanja</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: 'var(--gray)', marginBottom: '6px' }}>
+                  <span>Subtotal ({selected.size} item)</span>
+                  <span style={{ color: 'var(--dark)', fontWeight: 500 }}>{formatPrice(selectedTotal)}</span>
+                </div>
+                <div style={{ height: '1px', background: 'var(--gray-light)', margin: '10px 0' }} />
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <p className="cart-total-text">Total Pembayaran</p>
+                <p className="cart-total-amount">{formatPrice(selectedTotal)}</p>
+              </div>
+              <button
+                className="checkout-btn"
+                style={{ width: '100%' }}
+                disabled={selected.size === 0}
+                onClick={() => navigate('/checkout')}
+                id="checkout-btn"
+              >
+                Beli Sekarang ({selected.size} item)
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>
